@@ -6,7 +6,7 @@ type option = {
 
 type selectInputProps = {
     options: option[],
-    handleChange: () => void
+    handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
 }
 
 

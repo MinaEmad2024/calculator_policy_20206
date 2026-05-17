@@ -35,8 +35,8 @@ export default function Page() {
         <div className="flex flex-col items-center gap-5 justify-center p-6 md:w-3/5 md:px-28 md:py-12">
           {/* Add Hero Images Here */}
           <SelectInput  options={stateOptions} handleChange={handleStateChange}  />
-          <SelectInput  options={stateOptions} handleChange={handleStateChange}  />
-          <SelectInput  options={stateOptions} handleChange={handleStateChange}  />
+          {/* <SelectInput  options={stateOptions} handleChange={handleStateChange}  />
+          <SelectInput  options={stateOptions} handleChange={handleStateChange}  /> */}
         </div>
       </div>
     </main>
