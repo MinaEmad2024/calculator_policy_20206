@@ -1,15 +1,110 @@
 import postgres from 'postgres';
+
+
 import {
+  Issuer,
+  Policy,
+  PolicyDetail,
+
+
   CustomerField,
   CustomersTableType,
   InvoiceForm,
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
+
 } from './definitions';
 import { formatCurrency } from './utils';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+
+export async function fetchIssuers() {
+    try{
+    // Artificially delay a response for demo purposes.
+    // Don't do this in production :)
+
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    // const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
+    const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
+
+    return data; 
+
+    }catch(e){
+        console.error('Database Error:', e);
+        throw new Error('Failed to fetch revenue data.');
+
+    }
+}
+
+
+export async function fetchPolicies(params:string) {
+
+      try{
+    // Artificially delay a response for demo purposes.
+    // Don't do this in production :)
+
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    // const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
+    const data = await sql<Policy[]>`SELECT * FROM Policies WHERE  issuer_id=${params}`;
+
+    return data; 
+
+    }catch(e){
+        console.error('Database Error:', e);
+        throw new Error('Failed to fetch revenue data.');
+
+    }
+  
+}
+
+
+
+export async function fetchPolicyDetail(params:string) {
+
+      try{
+    // Artificially delay a response for demo purposes.
+    // Don't do this in production :)
+
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    // const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
+    const data = await sql<PolicyDetail[]>`SELECT * FROM PolicyDetails WHERE  policy_id=${params}`;
+
+    return data; 
+
+    }catch(e){
+        console.error('Database Error:', e);
+        throw new Error('Failed to fetch revenue data.');
+
+    }
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export async function fetchRevenue() {
   try {

@@ -2,10 +2,10 @@ import postgres from 'postgres';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
-async function listOdPolicies() {
+async function listOfIssuers() {
 	const data = await sql`
     SELECT *
-    FROM Policies
+    FROM Issuers
   `;
 
 	return data;
@@ -14,7 +14,7 @@ async function listOdPolicies() {
 export async function GET() {
 
   try {
-  	return Response.json(await listOdPolicies());
+  	return Response.json(await listOfIssuers());
   } catch (error) {
   	return Response.json({ error }, { status: 500 });
   }

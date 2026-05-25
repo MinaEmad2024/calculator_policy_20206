@@ -9,6 +9,52 @@ export type User = {
   password: string;
 };
 
+export type Issuer ={
+  id: string;
+  name: string;
+  email: string;
+};
+
+export type IssuerArray = {
+  issuers: Issuer[]
+};
+
+export type Policy ={
+  id: string;
+  issuer_id: string;
+  name: string;
+  code: string;
+};
+
+export type PolicyArray = {
+  policies: Policy[]
+};
+
+export type PolicyDetail ={
+      id :string;
+      policy_id :string;
+      name :string;
+      deductables :string;
+      coins :string;   
+      max :string;
+      min :string;
+      coins2 :string;  
+      coins3 :string;
+       
+};
+
+export type PolicyDetailArray = { 
+  policyDetails : PolicyDetail[]
+};
+
+
+
+
+
+
+
+
+
 export type Customer = {
   id: string;
   name: string;

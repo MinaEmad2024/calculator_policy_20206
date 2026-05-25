@@ -1,5 +1,5 @@
 import '@/app/ui/global.css';
-import { inter } from '@/app/ui/fonts';
+import { inter } from '@/app/ui/calculator/fonts';
 
 
 export default function RootLayout({
