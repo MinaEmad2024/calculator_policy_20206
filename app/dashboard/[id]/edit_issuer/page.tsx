@@ -4,6 +4,7 @@ import { fetchIssuerById } from '@/app/lib/data';
 import  PoliciesTable  from '@/app/ui/calcDashboard/policies/policiesTable'
 import Link from 'next/link';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
+import { notFound } from 'next/navigation';
 
 
 
@@ -11,6 +12,10 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
   const params = await props.params;
   const id = params.id;
   const issuer = await fetchIssuerById(id)
+
+  if(!issuer){
+    notFound()
+  };
 
   return (
     <main>
