@@ -1,0 +1,23 @@
+import Form from '@/app/ui/calcDashboard/issuers/create-issuer-form';
+import Breadcrumbs from '@/app/ui/calcDashboard/issuers/breadcrumbs';
+import { createIssuer } from '@/app/lib/actions'; 
+
+
+export default async function Page() {
+ 
+  return (
+    <main>
+      <Breadcrumbs
+        breadcrumbs={[
+          { label: 'Issuer', href: '/dashboard/create_issuer' },
+          {
+            label: 'Create New Issuer',
+            href: '/dashboard/create_issuer',
+            active: true,
+          },
+        ]}
+      />
+      <Form action={createIssuer} />
+    </main>
+  );
+}
