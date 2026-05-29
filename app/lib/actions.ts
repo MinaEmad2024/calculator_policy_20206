@@ -1,9 +1,12 @@
 'use server'
+
 import { z } from 'zod';
 import postgres from 'postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import crypto from 'crypto'
+import { signIn } from '@/auth';
+import { AuthError } from 'next-auth';
 
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
@@ -194,3 +197,56 @@ export async function deletePolicyDetail(id: string) {
   await sql`DELETE FROM PolicyDetails WHERE id = ${id}`;
   revalidatePath('/dashboard');
 }
+
+
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData,
+) {
+  try {
+    // 1. Extract only the literal credentials fields needed for verification
+    const email = formData.get('email');
+    const password = formData.get('password');
+    
+    // 2. Fetch the dynamic redirect destination safely, defaulting to your dashboard
+    const redirectTo = (formData.get('redirectTo') as string) || '/dashboard';
+
+    // 3. Pass clean, explicitly structured properties into the credentials provider
+    await signIn('credentials', {
+      email,
+      password,
+      redirectTo, 
+    });
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid credentials.';
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error;
+  }
+}
+
+
+// export async function authenticate(
+//   prevState: string | undefined,
+//   formData: FormData,
+// ) {
+//   try {
+//     await signIn('credentials', formData);
+//   } catch (error) {
+//     if (error instanceof AuthError) {
+//       switch (error.type) {
+//         case 'CredentialsSignin':
+//           return 'Invalid credentials.';
+//         default:
+//           return 'Something went wrong.';
+//       }
+//     }
+//     throw error;
+//   }
+// }
