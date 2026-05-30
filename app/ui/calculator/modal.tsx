@@ -35,7 +35,15 @@ const CalculationModal = ({ isOpen, onClose, calculatedData }: ModalProps) => {
 
                 <div className="pt-4 border-t border-slate-100 mt-4">
                     <h4 className="text-[10px] font-bold text-slate-400 uppercase mb-3">Logic Breakdown</h4>
-                    <div id="breakdown" className="text-[11px] space-y-2 text-slate-600"><div className="flex justify-between"><span>Deductible</span><span class="font-bold text-slate-800"> 0.000</span></div><div class="flex justify-between"><span>Main Coinsurance</span><span class="font-bold text-slate-800"> 0.000</span></div><div class="flex justify-between"><span>Balance after Initial Share</span><span class="font-bold text-slate-800"> 6.000</span></div><div class="flex justify-between"><span>Non-Approved Gap</span><span class="font-bold text-slate-800"> 0.000</span></div></div>
+                    <div id="breakdown" className="text-[11px] space-y-2 text-slate-600">
+                    <div className="flex justify-between"><span>Deductible</span>
+                    <span className="font-bold text-slate-800"> 0.000</span>
+                    </div><div className="flex justify-between"><span>Main Coinsurance</span>
+                    <span className="font-bold text-slate-800"> 0.000</span></div>
+                    <div className="flex justify-between"><span>Balance after Initial Share</span>
+                    <span className="font-bold text-slate-800"> 6.000</span></div>
+                    <div className="flex justify-between"><span>Non-Approved Gap</span>
+                    <span className="font-bold text-slate-800"> 0.000</span></div></div>
                 </div>
             </div>
         </div>
