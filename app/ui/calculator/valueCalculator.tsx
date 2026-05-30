@@ -1,6 +1,8 @@
   'use client'
 
   import { PolicyDetail } from "@/app/lib/definitions"
+  import CalculationModal from "./modal";
+  import CalculatorInputs from "./calculatorInputs";
   import { useState } from "react";
 
   interface ValueCalculatorProps {
@@ -12,12 +14,16 @@
 
   const ValueCalculator = ({selectedOption} : ValueCalculatorProps) => {
 
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+
     const [data, setData] = useState({
         "totalProclaimed":"",
         "Consultation":"",
         "appConsult":"",
         "appOtherServices":"",
         "consult":"",
+        "thirdCoInssurance":""
     })
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
@@ -37,6 +43,7 @@
     const handlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       console.log(data);
+      setIsModalOpen(true);
     }
 
     return (
@@ -44,64 +51,7 @@
                   <form action="" 
                   onSubmit={(e)=>handlesubmit(e)}
                   className="w-full flex flex-col gap-4">
-                    
-                    {/* Total Amount Input */}
-                    <div className="flex flex-col gap-1">                    
-                      <label htmlFor="total-proclaimed" className="text-sm font-semibold text-slate-700">
-                        Total Billed Amount 
-                      </label>
-                      <input 
-                        type="text" 
-                        id="totalProclaimed"
-                        name="totalProclaimed" 
-                        className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                        placeholder="0.00"
-                        onChange={handleChange}
-                      />
-                    </div>
-
-                    {/* Amount Accepted Input */}
-                    <div className="flex flex-col gap-1">                    
-                      <label htmlFor="amount-accepted" className="text-sm font-semibold text-slate-700">
-                        Consultation Agreed Price
-                      </label>
-                      <input 
-                        type="text" 
-                        id="Consultation"
-                        name="Consultation" 
-                        className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                        placeholder="0.00"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">                    
-                      <label htmlFor="amount-accepted" className="text-sm font-semibold text-slate-700">
-                        Approved Consult
-                      </label>
-                      <input 
-                        type="text" 
-                        id="appConsult"
-                        name="appConsult" 
-                        className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                        placeholder="0.00"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <div className="flex flex-col gap-1">                    
-                      <label htmlFor="amount-accepted" className="text-sm font-semibold text-slate-700">
-                        Approved Other services
-                      </label>
-                      <input 
-                        type="text" 
-                        id="appOtherServices"
-                        name="appOtherServices" 
-                        className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-                        placeholder="0.00"
-                        onChange={handleChange}
-                      />
-                    </div>
-                    <input type="checkbox" id="consult" name="consult" value=""onChange={handleChange}/>
-                    <label htmlFor="consult">process by visit</label>
+                    <CalculatorInputs handleChange={handleChange} data={data} />
                     {/* Action Button */}
                     <button 
                       type="submit"
@@ -110,14 +60,12 @@
                       Calculate 
                     </button>
                   </form> 
+                  {/* 3. Render Modal */}
+                  <CalculationModal 
+                    isOpen={isModalOpen} 
+                    onClose={() => setIsModalOpen(false)} />
+                    {/* calculatedData={data}      /> */}
 
-                  {/* Summary Total Badge */}
-                  <div className="flex flex-row items-center justify-between w-full mt-6 p-4 bg-slate-50 rounded-lg border border-slate-100">
-                    <span className="font-bold text-slate-700">Calculated Total</span>
-                    <span className="font-extrabold text-lg text-blue-600 px-3 py-1 bg-blue-50 rounded-md">
-                      25 Dinar
-                    </span>
-                  </div>
                 </div>
     )
   }
