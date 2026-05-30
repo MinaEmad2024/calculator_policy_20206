@@ -98,7 +98,7 @@ const PolicyDetailDropDown = ({ policiesDetails }: PolicyProps) => {
           selectedOption={selectedOption} 
         />
         <ValueCalculator 
-          // selectedOption={selectedOption} 
+          selectedOption={selectedOption} 
         />
       </div>
     </>
