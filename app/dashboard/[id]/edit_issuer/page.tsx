@@ -1,5 +1,5 @@
 import Form from '@/app/ui/calcDashboard/issuers/edit-issuer-form';
-import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
+import Breadcrumbs from '@/app/ui/calcDashboard/issuers/breadcrumbs';
 import { fetchIssuerById } from '@/app/lib/data';
 import  PoliciesTable  from '@/app/ui/calcDashboard/policies/policiesTable'
 import Link from 'next/link';

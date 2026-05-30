@@ -1,5 +1,5 @@
 import Form from '@/app/ui/calcDashboard/policies/create-policy-form';
-import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
+import Breadcrumbs from '@/app/ui/calcDashboard/policies/breadcrumbs';
 import { fetchIssuers } from '@/app/lib/data';
 import { createPolicy } from '@/app/lib/actions'
 

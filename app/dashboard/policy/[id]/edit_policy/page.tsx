@@ -1,5 +1,5 @@
 import Form from '@/app/ui/calcDashboard/policies/edit-policy-form';
-import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
+import Breadcrumbs from '@/app/ui/calcDashboard/policies/breadcrumbs';
 import { fetchPolicyById, fetchIssuers, fetchPolicyDetail } from '@/app/lib/data';
 import Link from 'next/link';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';

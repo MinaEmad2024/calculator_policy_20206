@@ -1,5 +1,5 @@
 import Form from '@/app/ui/calcDashboard/policiesDetails/edit-policyDetail-form';
-import Breadcrumbs from '@/app/ui/invoices/breadcrumbs';
+import Breadcrumbs from '@/app/ui/calcDashboard/issuers/breadcrumbs';
 import { fetchPolicyDetailById } from '@/app/lib/data';
 import { notFound } from 'next/navigation'; // 🛠️ Added for missing items
 
