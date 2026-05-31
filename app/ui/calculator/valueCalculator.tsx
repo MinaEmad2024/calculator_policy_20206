@@ -3,7 +3,8 @@
   import { PolicyDetail } from "@/app/lib/definitions"
   import CalculationModal from "./modal";
   import CalculatorInputs from "./calculatorInputs";
-  import { useState } from "react";
+  import {useState } from "react";
+  import usePolicy, { PolicyCalculationResult } from "@/app/hooks/usePolicy";
 
   interface ValueCalculatorProps {
     selectedOption: PolicyDetail | undefined; // Can be undefined if nothing is selected yet
@@ -14,10 +15,7 @@
 
   const ValueCalculator = ({selectedOption} : ValueCalculatorProps) => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-
-    const [data, setData] = useState({
+      const [data, setData] = useState({
         "totalProclaimed":"",
         "Consultation":"",
         "appConsult":"",
@@ -25,6 +23,16 @@
         "consult":"",
         "thirdCoInssurance":""
     })
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [modalData, setModalData] = useState<PolicyCalculationResult | undefined>(undefined);
+
+        const immediateCalculatedValues = usePolicy({data, option:selectedOption});
+
+
+
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>{
 
@@ -40,9 +48,13 @@
       }))
     }
 
+
+
     const handlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       console.log(data);
+      setModalData(immediateCalculatedValues);
+      console.log(modalData);
       setIsModalOpen(true);
     }
 
@@ -63,9 +75,8 @@
                   {/* 3. Render Modal */}
                   <CalculationModal 
                     isOpen={isModalOpen} 
-                    onClose={() => setIsModalOpen(false)} />
-                    {/* calculatedData={data}      /> */}
-
+                    onClose={() => setIsModalOpen(false)} 
+                    calculatedData={modalData} />
                 </div>
     )
   }
