@@ -32,12 +32,19 @@ export async function createIssuer(formData: FormData) {
         }
     );
 
+    
+    try{
     await sql`
     INSERT INTO issuers ( name, email)
     VALUES (${name}, ${email})`;
 
-      revalidatePath('/dashboard');
-      redirect('/dashboard');
+      } catch (error) {
+    // We'll also log the error to the console for now
+    console.error(error);
+    // return { message: 'Database Error: Failed to create company.' };
+  }
+    revalidatePath('/dashboard');
+    redirect('/dashboard');
 
 }
 
@@ -49,11 +56,17 @@ export async function updateIssuer(id:string,formData: FormData) {
             email: formData.get('email'),
         }
     );
+    try{
+      await sql`
+      UPDATE issuers 
+      SET name=${name}, email=${email}
+      WHERE id = ${id}`;
 
-    await sql`
-    UPDATE issuers 
-    SET name=${name}, email=${email}
-    WHERE id = ${id}`;
+    }catch(error){
+    // We'll also log the error to the console for now
+    console.error(error);
+    // return { message: 'Database Error: Failed to update company.' };
+    }
 
       revalidatePath('/dashboard');
       redirect('/dashboard');
@@ -61,7 +74,16 @@ export async function updateIssuer(id:string,formData: FormData) {
 }
 
 export async function deleteIssuer(id: string) {
+
+  try{
   await sql`DELETE FROM Issuers WHERE id = ${id}`;
+
+  }catch(error){
+    // We'll also log the error to the console for now
+    console.error(error);
+    // return { message: 'Database Error: Failed to delete the company.' };
+ 
+  }
   revalidatePath('/dashboard');
 }
 
@@ -82,10 +104,16 @@ export async function  createPolicy(formData: FormData) {
             code: formData.get('code'),
         }
     );
+    try{
+      await sql`
+      INSERT INTO Policies (issuer_id, name, code)
+      VALUES(${issuer_id},${name},${code})`;
 
-    await sql`
-    INSERT INTO Policies (issuer_id, name, code)
-    VALUES(${issuer_id},${name},${code})`;
+    }catch(error){
+    // We'll also log the error to the console for now
+    console.error(error);
+    // return { message: 'Database Error: Failed to create the policy.' };
+    }
 
       revalidatePath(`/dashboard/${issuer_id}/edit_issuer`);
       redirect(`/dashboard/${issuer_id}/edit_issuer`);
@@ -103,11 +131,17 @@ export async function updatePolicy(id:string,formData: FormData) {
             code: formData.get('code'),
         }
     );
+    try{
+      await sql`
+      UPDATE Policies 
+      SET issuer_id=${issuer_id}, name=${name}, code=${code}
+      WHERE id = ${id}`;
 
-    await sql`
-    UPDATE Policies 
-    SET issuer_id=${issuer_id}, name=${name}, code=${code}
-    WHERE id = ${id}`;
+    }catch(error){
+    // We'll also log the error to the console for now
+    console.error(error);
+    // return { message: 'Database Error: Failed to update the policy.' };
+    }
 
       revalidatePath(`/dashboard/${issuer_id}/edit_issuer`);
       redirect(`/dashboard/${issuer_id}/edit_issuer`);
@@ -116,7 +150,14 @@ export async function updatePolicy(id:string,formData: FormData) {
 
 
 export async function deletePolicy(id: string) {
-  await sql`DELETE FROM Policies WHERE id = ${id}`;
+  try{
+      await sql`DELETE FROM Policies WHERE id = ${id}`;
+   }catch(error){
+    // We'll also log the error to the console for now
+    console.error(error);
+    // return { message: 'Database Error: Failed to delete the policy.' };
+  }
+
   revalidatePath('/dashboard');
 }
 
@@ -153,11 +194,16 @@ export async function  createPolicyDetail(policyId: string, formData: FormData) 
     // 🛠️ 2. BUG FIX: Guarantee policy_id is a valid string for your SQL client. 
     // Fall back to policyId if Zod unboxed it as optional.
     const safePolicyId = policy_id || policyId;
-
-
+  try{
     await sql`
     INSERT INTO PolicyDetails (id,policy_id, name, deductables, coins, max, min, coins2, coins3)
     VALUES(${newId},${safePolicyId},${name},${deductable}, ${coins}, ${max}, ${min}, ${coins2}, ${coins3})`;
+
+   }catch(error){
+    // We'll also log the error to the console for now
+    console.error(error);
+    // return { message: 'Database Error: Failed to create an option.' };
+  }
 
       revalidatePath(`/dashboard/policy/${safePolicyId}/edit_policy`);
       redirect(`/dashboard/policy/${safePolicyId}/edit_policy`);
@@ -180,12 +226,17 @@ export async function  updatePolicyDetail(id: string, formData: FormData) {
         }
     );
 
-    
+  try{
+      await sql`
+      UPDATE PolicyDetails 
+      SET  name=${name}, deductables=${deductable}, coins=${coins}, max=${max}, min=${min}, coins2=${coins2}, coins3=${coins3}
+      WHERE id=${id}`;
 
-    await sql`
-    UPDATE PolicyDetails 
-    SET  name=${name}, deductables=${deductable}, coins=${coins}, max=${max}, min=${min}, coins2=${coins2}, coins3=${coins3}
-    WHERE id=${id}`;
+   }catch(error){
+    // We'll also log the error to the console for now
+    console.error(error);
+    // return { message: 'Database Error: Failed to update the option.' };
+  }
 
       revalidatePath(`/dashboard/policy/${policy_id}/edit_policy`);
       redirect(`/dashboard/policy/${policy_id}/edit_policy`);
@@ -194,7 +245,15 @@ export async function  updatePolicyDetail(id: string, formData: FormData) {
 
 
 export async function deletePolicyDetail(id: string) {
-  await sql`DELETE FROM PolicyDetails WHERE id = ${id}`;
+
+  try{
+    await sql`DELETE FROM PolicyDetails WHERE id = ${id}`;
+
+   }catch(error){
+    // We'll also log the error to the console for now
+    console.error(error);
+    // return { message: 'Database Error: Failed to delete an option.' };
+  }
   revalidatePath('/dashboard');
 }
 

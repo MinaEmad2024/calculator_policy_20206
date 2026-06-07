@@ -9,9 +9,9 @@ export default async function Page() {
     <main>
       <Breadcrumbs
         breadcrumbs={[
-          { label: 'Issuer', href: '/dashboard/create_issuer' },
+          { label: 'Insurance Company', href: '/dashboard/create_issuer' },
           {
-            label: 'Create New Issuer',
+            label: 'Create New Company',
             href: '/dashboard/create_issuer',
             active: true,
           },
