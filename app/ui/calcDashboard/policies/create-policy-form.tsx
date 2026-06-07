@@ -26,7 +26,7 @@ export default function Form({ action, issuers }: FormProps) {
               defaultValue=""
             >
               <option value="" disabled>
-                Select an issuer
+                Select an insurnce company
               </option>
               {issuers.map((issuer) => (
                 <option key={issuer.id} value={issuer.id}>
@@ -66,7 +66,7 @@ export default function Form({ action, issuers }: FormProps) {
                 id="code"
                 name="code"
                 type="text"
-                placeholder="Enter Policy Email"
+                placeholder="Enter Policy Code"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               {/* <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" /> */}
