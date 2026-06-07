@@ -67,7 +67,7 @@ const CalculatorInputs = ({handleChange, data}: calculatorInputsProps) => {
                     </div>
                     <div className="flex flex-col gap-1 mb-3">                    
                       <label htmlFor="amount-accepted" className="text-sm font-semibold text-slate-700">
-                        Third Co-Insurance 
+                        Fourth Co-Insurance 
                       </label>
                       <input 
                         type="text" 
@@ -79,7 +79,7 @@ const CalculatorInputs = ({handleChange, data}: calculatorInputsProps) => {
                       />
                     </div>
                     <input type="checkbox" id="consult" name="consult" value=""onChange={handleChange}/>
-                    <label htmlFor="consult" className="mx-2">process by visit</label>
+                    <label htmlFor="consult" className="mx-2">process by consultation</label>
 
     </div>
   )

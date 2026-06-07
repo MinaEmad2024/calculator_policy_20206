@@ -56,7 +56,7 @@ export default function IssuerDropdown({ issuers }: { issuers: Issuer[] }) {
       data-loading-state={isPending ? "true" : "false"}
     >
       <label htmlFor="options" className="text-sm font-semibold text-gray-700">
-        Select Issuers {isPending && <span className="text-blue-500 text-xs animate-pulse">(loading...)</span>}
+        Select Insurance company {isPending && <span className="text-blue-500 text-xs animate-pulse">(loading...)</span>}
       </label>
       <select
         id="options"

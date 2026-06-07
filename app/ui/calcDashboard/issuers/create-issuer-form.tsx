@@ -126,7 +126,7 @@ export default function Form({ action }: FormProps) {
         >
           Cancel
         </Link>
-        <Button type="submit">Create Issuer</Button>
+        <Button type="submit">Create Company</Button>
       </div>
     </form>
   );

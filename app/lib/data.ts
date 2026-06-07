@@ -21,10 +21,6 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 export async function fetchIssuers() {
     try{
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
-
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
     const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
@@ -42,10 +38,6 @@ export async function fetchIssuers() {
 export async function fetchPolicies(params:string) {
 
       try{
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
-
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
     const data = await sql<Policy[]>`SELECT * FROM Policies WHERE  issuer_id=${params}`;
@@ -65,10 +57,7 @@ export async function fetchPolicies(params:string) {
 export async function fetchPolicyDetail(params:string) {
 
       try{
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
 
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
     const data = await sql<PolicyDetail[]>`SELECT * FROM PolicyDetails WHERE  policy_id=${params}`;
@@ -86,10 +75,6 @@ export async function fetchPolicyDetail(params:string) {
 
 export async function fetchIssuerById(params:string) {
       try{
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
-
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
     const data = await sql<Issuer[]>`SELECT * FROM Issuers  WHERE id = ${params}`;
@@ -107,10 +92,6 @@ export async function fetchIssuerById(params:string) {
 
 export async function fetchPolicyById(params:string) {
         try{
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
-
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
     const data = await sql<Issuer[]>`SELECT * FROM Policies  WHERE id = ${params}`;
@@ -126,10 +107,6 @@ export async function fetchPolicyById(params:string) {
 }
 export async function fetchPolicyDetailById(params:string) {
         try{
-    // Artificially delay a response for demo purposes.
-    // Don't do this in production :)
-
-    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     // const data = await sql<Issuer[]>`SELECT * FROM Issuers`;
     const data = await sql<Issuer[]>`SELECT * FROM PolicyDetails  WHERE id = ${params}`;
