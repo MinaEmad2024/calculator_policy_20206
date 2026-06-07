@@ -45,7 +45,7 @@ export default function Form({ action }: FormProps) {
         {/* Issuer Name */}
         <div className="mb-4">
           <label htmlFor="name" className="mb-2 block text-sm font-medium">
-            Issuer Name
+            Company Name
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
@@ -63,7 +63,7 @@ export default function Form({ action }: FormProps) {
         {/* Issuer Email */}
         <div className="mb-4">
           <label htmlFor="email" className="mb-2 block text-sm font-medium">
-            Issuer Email
+            Company Email
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">

@@ -24,7 +24,7 @@ export default function EditPolicyForm({
         {/* Customer Name */}
         <div className="mb-4">
           <label htmlFor="issuer_id" className="mb-2 block text-sm font-medium">
-            Change an Issuer
+            Change the Insurance Company  
           </label>
           <div className="relative">
             <select

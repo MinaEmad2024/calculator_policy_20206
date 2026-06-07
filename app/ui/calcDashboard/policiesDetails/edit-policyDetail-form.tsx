@@ -27,7 +27,7 @@ export default function Form({ policyDetail }: {policyDetail:PolicyDetail}) {
                 name="policy_id"
                 type='hidden'
                 defaultValue={policyDetail.policy_id}
-                placeholder="Enter Issuer Name"
+                placeholder="Enter Option Name"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
             </div>

@@ -25,7 +25,7 @@ export default function Form({ action, id }: FormProps) {
                 name="policy_id"
                 type='hidden'
                 defaultValue={id}
-                placeholder="Enter Issuer Name"
+                placeholder="Enter Option Name"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
             </div>
@@ -43,7 +43,7 @@ export default function Form({ action, id }: FormProps) {
                 id="name"
                 name="name"
                 type="text"
-                placeholder="Enter Issuer Name"
+                placeholder="Enter Option Name"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
             </div>
@@ -159,7 +159,7 @@ export default function Form({ action, id }: FormProps) {
         >
           Cancel
         </Link>
-        <Button type="submit">Create IssOptio</Button>
+        <Button type="submit">Create Option</Button>
       </div>
     </form>
   );
